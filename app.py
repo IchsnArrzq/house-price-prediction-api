@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -75,6 +76,11 @@ def list_locations():
     payload = filtered.head(limit).to_dict(orient="records")
     return jsonify(payload)
 
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok"})
+
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

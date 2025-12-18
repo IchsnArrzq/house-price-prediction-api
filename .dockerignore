@@ -1,0 +1,6 @@
+.ipynb_checkpoints
+*.ipynb
+anaconda_projects
+__pycache__
+.git
+.gitignore
